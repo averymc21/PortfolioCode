@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avery McLean | UX-Driven Developer</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for subtle scrolling behavior and font */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0fdf4; /* Very light mint/off-white background */
+            color: #1a202c; /* Dark text */
+        }
+        .section-title {
+            position: relative;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2.5rem;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 70%; /* Wider underline */
+            height: 5px;
+            background-color: #6ee7b7; /* Light green accent */
+            border-radius: 9999px;
+            opacity: 0.8; /* Subtle look */
+        }
+        /* Watercolor Accent Background on Hero */
+        #home {
+            background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%); /* Soft gradient */
+        }
+        /* Project card hover effect */
+        .project-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.1), 0 4px 6px -2px rgba(16, 185, 129, 0.05); /* Soft mint shadow */
+        }
+        /* Style for the Figma iframe container to maintain aspect ratio */
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            /* Increased height for mobile app view (e.g., 9:16 aspect ratio is 177.7%) */
+            padding-top: 150%; 
+            margin-bottom: 1rem;
+        }
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        /* Styling for the logos */
+        .client-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .client-logos img {
+            max-height: 120px; /* Standardize size */
+            width: auto;
+            opacity: 0.8;
+        }
+    </style>
+    <!-- Load Lucide Icons from CDN (Globally exposed window.lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // Use window.onload to ensure the DOM and the Lucide library are fully loaded
+        window.onload = function() {
+            // The Lucide script exposes 'lucide' globally, which contains the createIcons function
+            if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                lucide.createIcons();
+            } else {
+                console.error("Lucide library not loaded correctly.");
+            }
+        };
+    </script>
+</head>
+<body class="antialiased">
+
+    <!-- 1. Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-xl/10 rounded-b-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Name -->
+                <a href="#home" class="text-2xl font-extrabold text-gray-800 hover:text-teal-600 transition duration-300">
+                    Avery McLean
+                </a>
+                <!-- Navigation Links -->
+                <nav class="space-x-4">
+                    <a href="#about" class="text-gray-600 hover:text-teal-600 font-medium transition duration-300 hidden sm:inline">About</a>
+                    <a href="#projects" class="text-gray-600 hover:text-teal-600 font-medium transition duration-300 hidden sm:inline">Projects</a>
+                    <a href="#contact" class="text-white bg-teal-500 hover:bg-teal-600 px-4 py-2 rounded-xl font-semibold transition duration-300 shadow-md">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2. Hero Section -->
+        <section id="home" class="py-24 md:py-40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="max-w-4xl mx-auto">
+                    <h1 class="text-5xl sm:text-7xl font-extrabold text-gray-900 leading-tight mb-6">
+                        <span class="text-teal-600">UX-Driven</span> Developer and Digital Event Strategist
+                    </h1>
+                    <p class="text-xl text-gray-700 mb-10 max-w-3xl mx-auto">
+                        I craft engaging digital experiences at the intersection of UX design, data analysis, and frontend development. Specializing in translating complex user needs into actionable strategies and clean, functional code using <span class="font-semibold text-teal-600">React, Vue.js, HTML, and CSS</span>.
+                    </p>
+                    <div class="flex justify-center space-x-6">
+                        <a href="#projects" class="bg-teal-600 text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl shadow-teal-300/50 hover:bg-teal-700 transition transform hover:scale-105 duration-300">
+                            View My Projects
+                        </a>
+                        <a href="#contact" class="bg-white text-gray-800 border-2 border-teal-200 px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition transform hover:scale-105 duration-300">
+                            Get in Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. About Section -->
+        <section id="about" class="py-16 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="section-title text-4xl font-extrabold text-gray-900">About Me</h2>
+
+                    <!-- Professional Summary -->
+                    <div class="space-y-6 text-gray-700 text-lg mb-12">
+                        <p>
+                            My passion lies in understanding how people interact with technology and designing solutions that are both intuitive and measurable. My academic background focuses heavily on <strong>User Experience Design and Human-Computer Interaction</strong>, giving me a strong foundation in research-backed problem-solving. This academic rigor is complemented by my hands-on experience in software development and digital events.
+                        </p>
+                        <p>
+                            As a Digital Events Intern at TechSmith, I've had the unique opportunity to bridge the gap between creative execution (designing engaging assets) and strategic impact (analyzing large datasets to drive business decisions). I thrive in environments where I can apply a dual skillset—from engineering a user interface to analyzing its performance—ensuring every decision is centered on the user experience and clear business outcomes.
+                        </p>
+                        <p>
+                            I am actively seeking roles that allow me to combine my technical knowledge with my strategic UX focus to build modern, impactful web applications.
+                        </p>
+                    </div>
+
+                    <!-- Core Skills / Technology Stack -->
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8 pt-4 border-t border-gray-200">Core Skills / Technology Stack</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                        
+                        <!-- Skill Card Template -->
+                        <div class="bg-white p-6 rounded-3xl shadow-xl border border-teal-100 transform hover:shadow-2xl hover:scale-[1.03] transition duration-300">
+                            <i data-lucide="layout-dashboard" class="w-8 h-8 mx-auto text-teal-500 mb-3"></i>
+                            <h4 class="font-bold text-gray-800">Frontend Dev</h4>
+                            <p class="text-sm text-gray-500">React, Vue.js, HTML5, CSS</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-3xl shadow-xl border border-teal-100 transform hover:shadow-2xl hover:scale-[1.03] transition duration-300">
+                            <i data-lucide="pen-tool" class="w-8 h-8 mx-auto text-teal-500 mb-3"></i>
+                            <h4 class="font-bold text-gray-800">UX & Design</h4>
+                            <p class="text-sm text-gray-500">Figma, Canva, User Research</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-3xl shadow-xl border border-teal-100 transform hover:shadow-2xl hover:scale-[1.03] transition duration-300">
+                            <i data-lucide="line-chart" class="w-8 h-8 mx-auto text-teal-500 mb-3"></i>
+                            <h4 class="font-bold text-gray-800">Data & Strategy</h4>
+                            <p class="text-sm text-gray-500">Power BI, Data Analysis, A/B Testing</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-3xl shadow-xl border border-teal-100 transform hover:shadow-2xl hover:scale-[1.03] transition duration-300">
+                            <i data-lucide="code" class="w-8 h-8 mx-auto text-teal-500 mb-3"></i>
+                            <h4 class="font-bold text-gray-800">Tools & Other</h4>
+                            <p class="text-sm text-gray-500">Python, Git/GitHub</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Projects Section -->
+        <section id="projects" class="py-16 md:py-24 bg-teal-50/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="section-title text-4xl font-extrabold text-gray-900">Featured Projects</h2>
+                    
+                    <!-- Project Grid -->
+                    <div class="space-y-16">
+
+                        <!-- Project 1: SimplerCare App -->
+                        <div class="bg-white p-8 rounded-3xl shadow-2xl project-card">
+                            <div class="md:flex md:space-x-8">
+                                <!-- Project Visual Area: Figma Embed - Now wider (md:w-2/5) -->
+                                <div class="w-full md:w-2/5 mb-6 md:mb-0 flex-shrink-0">
+                                    <h4 class="font-semibold text-center text-gray-800 mb-2">Interactive Prototype</h4>
+                                    <!-- Figma Prototype Embed -->
+                                    <div class="iframe-container rounded-2xl shadow-lg border-4 border-teal-200">
+                                        <!-- Converted Figma prototype link to the embed format -->
+                                        <iframe 
+                                            src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/LO1ZJ4AchvwqstV7nfcGQc/ComplexNeeds?node-id=0-1&t=26bG6BuycxhaLazY-1" 
+                                            allowfullscreen 
+                                            class="rounded-xl">
+                                        </iframe>
+                                    </div>
+                                    
+                                    <!-- Separate Links for external viewing/presentation -->
+                                    <div class="flex flex-col space-y-2 mt-4">
+                                        <a href="https://docs.google.com/presentation/d/10BHiceoFHBmIDSYppZVpC8Bm5VOHAP9ZTK1zNEnQkd8/edit?usp=sharing" target="_blank" class="inline-flex items-center justify-center w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-xl transition duration-300 shadow-md">
+                                            <i data-lucide="presentation" class="w-5 h-5 mr-2"></i> View Presentation (New Tab)
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- Text Content - Now narrower (md:w-3/5) -->
+                                <div class="w-full md:w-3/5">
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-2 flex items-center">
+                                        SimplerCare Care Coordination App (In Development)
+                                        <i data-lucide="heart" class="w-5 h-5 ml-2 text-red-500 fill-red-500"></i>
+                                    </h3>
+                                    <p class="text-sm font-semibold text-teal-600 mb-4">
+                                        Role: Student PI, UX Designer, Gamification Developer
+                                    </p>
+                                    <p class="text-gray-600 mb-6">
+                                        Project Summary: Developing a user-friendly care coordination mobile app aimed at reducing stress and caregiver burden for families of children with Complex Medical Care (CMC). My current focus is on designing and prototyping ethical gamification features (e.g., meditative rock stacking/Bonsai growth) with curated affirmations for psychological support.
+                                    </p>
+                                    <div class="grid lg:grid-cols-2 gap-4">
+                                        <div>
+                                            <h4 class="font-semibold text-base text-gray-800 mb-2 flex items-center">
+                                                <i data-lucide="check-circle" class="w-4 h-4 mr-2 text-teal-500"></i> Key Achievements
+                                            </h4>
+                                            <ul class="list-none space-y-1 text-gray-700 text-sm">
+                                                <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">•</span> Conducted secondary research on the psychological mechanisms of gamification to ensure features promote intrinsic motivation.</li>
+                                                <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">•</span> Designed a comprehensive tool to integrate communication, reduce caregiver burden, and improve medication adherence.</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-base text-gray-800 mb-2 flex items-center">
+                                                <i data-lucide="shield-alert" class="w-4 h-4 mr-2 text-red-500"></i> Challenge Overcome
+                                            </h4>
+                                            <p class="text-gray-700 text-sm">
+                                                The core challenge is translating complex medical data into a motivating, yet calming, digital experience, carefully integrating functional checklists with gamified stress-relief.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 2: Deep Breath Prototype -->
+                        <div class="bg-white p-8 rounded-3xl shadow-2xl project-card">
+                            <div class="md:flex md:space-x-8 md:flex-row-reverse">
+                                <!-- Project Visual Area: Figma Embed - Now wider (md:w-2/5) -->
+                                <div class="w-full md:w-2/5 mb-6 md:mb-0 flex-shrink-0">
+                                    <h4 class="font-semibold text-center text-gray-800 mb-2">Interactive Prototype</h4>
+                                    <!-- Figma Prototype Embed -->
+                                    <div class="iframe-container rounded-2xl shadow-lg border-4 border-teal-200">
+                                        <!-- Converted Figma prototype link to the embed format -->
+                                        <iframe 
+                                            src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/kIAT6Tw75MxnMk7V6fmPD3/Deep-Breath-Prototype?node-id=0-1&t=aa39DY8kdjse6Pvb-1" 
+                                            allowfullscreen 
+                                            class="rounded-xl">
+                                        </iframe>
+                                    </div>
+                                </div>
+                                <!-- Text Content - Now narrower (md:w-3/5) -->
+                                <div class="w-full md:w-3/5">
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-2 flex items-center">
+                                        Deep Breath: UX Design for a Holistic Mental Wellness App
+                                        <i data-lucide="figma" class="w-5 h-5 ml-2 text-indigo-500"></i>
+                                    </h3>
+                                    <p class="text-sm font-semibold text-teal-600 mb-4">
+                                        Role: UX Designer & Prototyper
+                                    </p>
+                                    <p class="text-gray-600 mb-6">
+                                        Porject Summary: Conceptualized and designed a high-fidelity mobile application prototype in Figma that combines the strengths of leading mental health platforms (Headspace, Calm, Moodfit) into a single, user-friendly tool focused on mood tracking, breathing exercises, and gamified engagement.
+                                    </p>
+                                    <div class="grid lg:grid-cols-2 gap-4">
+                                        <div>
+                                            <h4 class="font-semibold text-base text-gray-800 mb-2 flex items-center">
+                                                <i data-lucide="check-circle" class="w-4 h-4 mr-2 text-teal-500"></i> Key Achievements
+                                            </h4>
+                                            <ul class="list-none space-y-1 text-gray-700 text-sm">
+                                                <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">•</span> Conducted detailed competitive research and synthesized key design opportunities from three industry leaders.</li>
+                                                <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">•</span> Designed features integrating user mood data with AI to provide highly personalized mindfulness recommendations.</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-base text-gray-800 mb-2 flex items-center">
+                                                <i data-lucide="shield-alert" class="w-4 h-4 mr-2 text-red-500"></i> Challenge Overcome
+                                            </h4>
+                                            <p class="text-gray-700 text-sm">
+                                                The central challenge was integrating the aesthetic appeal and content depth of industry leaders with the practical, data-logging focus of tracking apps for consistent self-reflection.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 3: Webinar Performance Analysis & Strategy -->
+                        <div class="bg-white p-8 rounded-3xl shadow-2xl project-card">
+                            <div class="md:flex md:space-x-8">
+                                <!-- Placeholder Image/Visual -->
+                                <div class="w-full md:w-1/3 mb-6 md:mb-0 flex-shrink-0">
+                                    <img src="images/tsclogo.png" alt="Webinar Performance Analysis Dashboard" class="rounded-2xl shadow-lg border border-teal-200 w-full h-auto object-cover">
+                                </div>
+                                <div class="w-full md:w-2/3">
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-2 flex items-center">
+                                        Data-Driven Webinar Strategy and Performance Optimization
+                                        <i data-lucide="database" class="w-5 h-5 ml-2 text-blue-500"></i>
+                                    </h3>
+                                    <p class="text-sm font-semibold text-teal-600 mb-4">
+                                        Role: Data Analyst & Strategic Consultant (TechSmith Internship)
+                                    </p>
+                                    <p class="text-gray-600 mb-6">
+                                        Project Summary: A comprehensive analysis of TechSmith's webinar data (including attendance, post-sales, and trial starts) that led to actionable, integrated recommendations now shaping the company’s digital events strategy.
+                                    </p>
+                                    <div class="grid lg:grid-cols-2 gap-4">
+                                        <div>
+                                            <h4 class="font-semibold text-base text-gray-800 mb-2 flex items-center">
+                                                <i data-lucide="check-circle" class="w-4 h-4 mr-2 text-teal-500"></i> Key Achievements
+                                            </h4>
+                                            <ul class="list-none space-y-1 text-gray-700 text-sm">
+                                                <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">•</span> Performed correlation and regression analysis on internal Power BI data to uncover conversion drivers.</li>
+                                                <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">•</span> Developed a 20+ point recommendation plan balancing monetary success with customer retention and attendance rate.</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-base text-gray-800 mb-2 flex items-center">
+                                                <i data-lucide="shield-alert" class="w-4 h-4 mr-2 text-red-500"></i> Challenge Overcome
+                                            </h4>
+                                            <p class="text-gray-700 text-sm">
+                                                The primary challenge was ensuring recommendations were not solely focused on monetary returns. I achieved this by prioritizing metrics like retention and attendance rate, aligning the strategy with a customer-first philosophy.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 4: Webinar Thumbnail Redesign -->
+                        <div class="bg-white p-8 rounded-3xl shadow-2xl project-card">
+                            <div class="md:flex md:space-x-8 md:flex-row-reverse">
+                                <!-- Placeholder Image/Visual -->
+                                <div class="w-full md:w-1/3 mb-6 md:mb-0 flex-shrink-0">
+                                    <!-- Using the new, cleaner thumbnail as the primary visual -->
+                                    <img src="images/L1NT - Capture Modes.png" alt="Webinar Thumbnail Redesign Example" class="rounded-2xl shadow-lg border border-teal-200 w-full h-auto object-cover">
+                                </div>
+                                <div class="w-full md:w-2/3">
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-2 flex items-center">
+                                        Visual Redesign for Webinar Engagement and Brand Consistency
+                                        <i data-lucide="palette" class="w-5 h-5 ml-2 text-pink-500"></i>
+                                    </h3>
+                                    <p class="text-sm font-semibold text-teal-600 mb-4">
+                                        Role: Design Lead & Visual Strategist (TechSmith Internship)
+                                    </p>
+                                    <p class="text-gray-600 mb-6">
+                                        Project Summary: Led the creative redesign of all webinar promotional thumbnails to enhance viewer engagement and maintain strong brand identity across the entire digital event series.
+                                    </p>
+                                    <div class="grid lg:grid-cols-2 gap-4">
+                                        <div>
+                                            <h4 class="font-semibold text-base text-gray-800 mb-2 flex items-center">
+                                                <i data-lucide="check-circle" class="w-4 h-4 mr-2 text-teal-500"></i> Key Achievements
+                                            </h4>
+                                            <ul class="list-none space-y-1 text-gray-700 text-sm">
+                                                <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">•</span> Defined a new design system that incorporated brand values, engaging titles, and high visual clarity.</li>
+                                                <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">•</span> Ensured the presenter's headshot remained the most relatable focal point (User-Centric Framing).</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-base text-gray-800 mb-2 flex items-center">
+                                                <i data-lucide="shield-alert" class="w-4 h-4 mr-2 text-red-500"></i> Challenge Overcome
+                                            </h4>
+                                            <p class="text-gray-700 text-sm">
+                                                The core design challenge was evolving the visual style from an older, asset-heavy format to a cleaner, high-impact design for higher click-through potential.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 5: Rocket Launcher Executive Controller GUI -->
+                        <div class="bg-white p-8 rounded-3xl shadow-2xl project-card">
+                            <div class="md:flex md:space-x-8">
+                                <div class="w-full md:w-1/3 mb-6 md:mb-0 flex-shrink-0">
+                                    <!-- Logos embedded in place of a single screenshot -->
+                                    <div class="client-logos p-4 bg-gray-100 rounded-xl border border-gray-200 h-full flex flex-col justify-center">
+                                        <h4 class="text-sm font-semibold text-gray-600 mb-3 text-center">Project Sponsors</h4>
+                                        <img src="images/gtricircle.jpg" alt="Georgia Tech Research Institute Logo" class="mx-auto my-2">
+                                        <img src="images/department of defense logo.jpeg" alt="Department of Defense Logo" class="mx-auto my-2">
+                                    </div>
+                                </div>
+                                <div class="w-full md:w-2/3">
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-2 flex items-center">
+                                        Real-Time Executive Controller Graphical User Interface (GUI)
+                                        <i data-lucide="rocket" class="w-5 h-5 ml-2 text-gray-700"></i>
+                                    </h3>
+                                    <p class="text-sm font-semibold text-teal-600 mb-4">
+                                        Role: Software Engineer Intern (Georgia Tech Research Institute / DoD Contractor)
+                                    </p>
+                                    <p class="text-gray-600 mb-6">
+                                        Project Summary: Engineered and designed graphical user interfaces (GUIs) for a critical rocket launcher executive controller system, enhancing system usability for operators.
+                                    </p>
+                                    <div class="grid lg:grid-cols-2 gap-4">
+                                        <div>
+                                            <h4 class="font-semibold text-base text-gray-800 mb-2 flex items-center">
+                                                <i data-lucide="check-circle" class="w-4 h-4 mr-2 text-teal-500"></i> Key Achievements
+                                            </h4>
+                                            <ul class="list-none space-y-1 text-gray-700 text-sm">
+                                                <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">•</span> Developed user-facing GUIs using **Vue.js**, focusing on component reusability and real-time data visualization.</li>
+                                                <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">•</span> Employed an iterative design process, utilizing wireframes and user feedback to enhance system usability.</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-base text-gray-800 mb-2 flex items-center">
+                                                <i data-lucide="shield-alert" class="w-4 h-4 mr-2 text-red-500"></i> Challenge Overcome
+                                            </h4>
+                                            <p class="text-gray-700 text-sm">
+                                                Successfully built a mission-critical interface that provided intuitive control and clear data display for complex, real-time hardware systems, drastically improving overall operational efficiency.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Contact Section -->
+        <section id="contact" class="py-16 md:py-24 bg-gray-900 text-white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-extrabold mb-4">Let's Connect and Build Something Impactful.</h2>
+                <p class="text-xl text-gray-400 mb-10">
+                    I'm currently open to new opportunities that leverage my blend of UX strategy, data analysis, and frontend development skills.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="mailto:averymc21@gmail.com" class="bg-teal-500 hover:bg-teal-600 text-gray-900 font-bold py-3 px-6 rounded-xl transition duration-300 shadow-lg flex items-center justify-center">
+                        <i data-lucide="mail" class="w-5 h-5 mr-2"></i> averymc21@gmail.com
+                    </a>
+                    <a href="https://www.linkedin.com/in/avery-mclean-37088927a" target="_blank" class="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-6 rounded-xl transition duration-300 shadow-lg flex items-center justify-center">
+                        <i data-lucide="linkedin" class="w-5 h-5 mr-2"></i> LinkedIn Profile
+                    </a>
+                    <a href="https://github.com/averymc21" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-xl transition duration-300 shadow-lg flex items-center justify-center">
+                        <i data-lucide="github" class="w-5 h-5 mr-2"></i> GitHub Profile
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-400 py-6 text-center">
+        <p> 2025 Avery McLean. Designed with a soft, UX-focused aesthetic.</p>
+    </footer>
+
+</body>
+</html>
